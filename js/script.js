@@ -15,12 +15,12 @@ const SHOW_LANG_AFTER = 2500;
 // Helper: Normalize page paths
 const abs = (p) => '/' + String(p || '').replace(/^\/+/, '');
 
-// Track intro sound per language (played once per session)
+// Track intro sound per language 
 function keyFor(lang){ return `introPlayed_${lang}`; }
 function hasPlayed(lang){ return sessionStorage.getItem(keyFor(lang)) === '1'; }
 function markPlayed(lang){ sessionStorage.setItem(keyFor(lang), '1'); }
 
-// Safe audio play/pause handlers (work across browsers/iOS)
+// Safe audio play/pause handlers 
 function playAudioSafe(audio){
   try{
     if(!audio) return;
@@ -59,7 +59,7 @@ function playIntroOnce(lang){
   }
 }
 
-// Developer utilities (optional debugging helpers)
+// Developer utilities 
 window.resetIntroSound = ()=>{
   sessionStorage.removeItem('introPlayed_ar');
   sessionStorage.removeItem('introPlayed_en');

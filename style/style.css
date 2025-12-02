@@ -1,14 +1,13 @@
-
-/*  IMIDEA – FULL STYLES (home/splash/chatbot unchanged)                      */
-/*  + Unified ads/prediction forms scoped under .ad-page                       */
+/* IMIDEA – Global styles + ads/prediction pages under .ad-page */
 
 
-
+/* Global color variables */
 :root{
   --violet:#a186df; --violet-2:#6850a2; --blue:#9051d3;
   --card:#ffffff; --text:#fff;
 }
 
+/* Basic reset and base layout */
 *{ box-sizing:border-box }
 html,body{ height:100%; margin:0 }
 html{
@@ -30,7 +29,7 @@ body{
   line-height:1.6;
 }
 
-/* ===== Splash ===== */
+/* ===== Splash screen layout ===== */
 .splash{
   position: fixed; inset: 0; display: grid; place-content: center; gap: 28px;
   padding: 0 20px; width: 100%; min-height: 100vh; z-index: 1; text-align: center;
@@ -44,6 +43,8 @@ body{
 .logo-splash.show{ opacity: 1; transform: scale(1) translateY(0); }
 .lang{ display:flex; justify-content:center; align-items:center; gap:18px; opacity:0; transform:translateY(12px); transition:opacity .8s, transform .8s; }
 .lang.show{ opacity:1; transform:translateY(0); }
+
+/* Primary button style */
 .btn{
   border:1px solid rgba(255,255,255,.28); cursor:pointer; padding:12px 24px; border-radius:999px;
   background: rgba(255,255,255,.14); color:#fff; font-weight:800; font-size:clamp(14px,1.2vw,16px);
@@ -60,22 +61,27 @@ body{
 }
 .splash .btn:hover{ background:rgba(255,255,255,.24); border-color:rgba(255,255,255,.44); box-shadow:0 8px 22px rgba(0,0,0,.22); }
 
-/* ===== Home (AR + EN) ===== */
+/* ===== Home (AR + EN) main sections ===== */
 .header, .main, .footer{ width:min(820px, 90%); margin-inline:auto }
 @media (min-width:1200px){ .header, .main, .footer{ width:min(900px, 90%); } }
+
+/* Brand logo alignment (RTL/LTR) */
 .logo-brand{ width: clamp(120px, 14vw, 220px); display:block; filter: drop-shadow(0 5px 14px rgba(0,0,0,.2)) brightness(1.05); }
 html[dir="rtl"] .logo-brand{ margin: 18px 32px 6px auto; text-align:right; }
 html[dir="ltr"] .logo-brand{ margin: 18px auto 6px 32px; text-align:left; }
+
+/* Main content and hero text */
 .main{ text-align:center; padding: 28px 10px 0 }
 h1{ font-weight:800; font-size: clamp(26px, 3.6vw, 44px); margin: 6px 0 4px }
 .sub{ opacity:.9; margin: 0 0 22px; font-size: clamp(16px, 1.8vw, 20px) }
 
+/* Cards grid on home */
 .cards{
   display:grid; gap:20px; grid-template-columns: 1fr; justify-items:center; width:min(960px, 92%); margin:10px auto 0;
 }
 @media (min-width: 820px){ .cards{ grid-template-columns: repeat(2, minmax(300px, 1fr)); gap:22px; } }
 
-/* Card */
+/* Individual card style */
 .card{
   width:100%; max-width:620px; background: rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.2); border-radius:16px; padding:22px 18px;
@@ -88,19 +94,15 @@ h1{ font-weight:800; font-size: clamp(26px, 3.6vw, 44px); margin: 6px 0 4px }
 .card .desc{ min-height:3.6em; color:#eef1ff; opacity:.95; line-height:1.6; font-size:clamp(15px,1.4vw,18px) }
 .card .btn{ margin-top:auto; }
 
-/* Footer */
+/* Footer text */
 .footer{ text-align:center; opacity:.78; width:100%; display:block; margin-top:34px;
   font-size:clamp(13px, 1.2vw, 15px); color:#03073a; }
 
-/* ===== Small screens (مشترك) ===== */
+/* Small-screen tweaks for splash */
 @media (max-width:600px){ .splash{ gap:24px; padding: 0 14px } }
 
 
-/*                          Ads / Prediction Pages                            */
-/*            (ONLY when body has class .ad-page – others unaffected)         */
-
-
-
+/* Ads / Prediction pages – activated only when body has .ad-page */
 body.ad-page{
   display:block;
   min-height:100vh;
@@ -117,7 +119,7 @@ body.ad-page::before{
   z-index:0;
 }
 
-
+/* Main container for ad/maintenance prediction pages */
 .ad-page main{
   position:relative; z-index:1;
   width:min(980px, 94%);
@@ -125,7 +127,7 @@ body.ad-page::before{
   padding: 32px 0 28px;
 }
 
-
+/* Card container for forms */
 .ad-page .form-card{
   width:min(840px, 94%);
   margin: 14px auto 28px;
@@ -138,7 +140,7 @@ body.ad-page::before{
   text-align:center;
 }
 
-
+/* Titles and description inside the form card */
 .ad-page .form-card .in-card-title{
   margin:0 0 6px;
   font-weight:800;
@@ -151,12 +153,12 @@ body.ad-page::before{
   font-size:clamp(14px,1.6vw,16px);
 }
 
-
+/* Vertical layout for form fields */
 .ad-page .ad-form{ display:flex; flex-direction:column; gap:16px; }
 .ad-page .ad-form .row{ display:flex; flex-direction:column; gap:8px; text-align:start; }
 .ad-page .ad-form .row > label{ font-weight:800; font-size:18px; opacity:.98; color:#fff; }
 
-
+/* Shared styling for all text/select inputs in ad forms */
 .ad-page .ad-form .select-wrap select,
 .ad-page .ad-form select,
 .ad-page .ad-form input[type="month"],
@@ -191,7 +193,7 @@ form#ad-form input[type="number"]:focus{
 .ad-page .ad-form option,
 form#ad-form option{ background:#15045bcb; color:#fff; font-size:18px; }
 
-
+/* Radio groups for options (time/place/etc.) */
 .ad-page .ad-form .radios,
 form#ad-form .radios{
   display:flex; flex-wrap:wrap; gap:18px 22px; align-items:center;
@@ -203,7 +205,7 @@ form#ad-form .radios label{
 .ad-page .ad-form input[type="radio"],
 form#ad-form input[type="radio"]{ transform:scale(1.2); accent-color:#ffffff; }
 
-
+/* Form actions (submit / reset buttons) */
 .ad-page .ad-form .actions,
 form#ad-form .actions{ display:flex; gap:12px; justify-content:center; margin-top:8px; }
 .ad-page .ad-form .actions .btn,
@@ -217,7 +219,7 @@ cursor:pointer; padding:12px 22px; border-radius:999px;
 .ad-page .ad-form .actions .btn:hover,
 form#ad-form .actions .btn:hover{ background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.38) }
 
-
+/* Result section showing prediction output */
 .ad-page .result-card{
   width:min(840px,94%); margin: 14px auto 36px;
   background: rgba(255,255,255,.12);
@@ -232,6 +234,7 @@ form#ad-form .actions .btn:hover{ background:rgba(255,255,255,.22); border-color
   .ad-page .form-card{ padding-bottom: 28px; }
 }
 
+/* Extra alignment for action buttons row */
 .ad-page .ad-form .actions {
   display: flex !important;
   flex-direction: row !important;
@@ -241,7 +244,7 @@ form#ad-form .actions .btn:hover{ background:rgba(255,255,255,.22); border-color
   padding-top: 10px !important;
 }
 
-
+/* Ensure .row.actions is also aligned horizontally on desktop */
 .ad-page .ad-form .row.actions {
   display: flex !important;
   flex-direction: row !important;
@@ -250,20 +253,23 @@ form#ad-form .actions .btn:hover{ background:rgba(255,255,255,.22); border-color
   margin-top: 30px !important;
   padding-top: 10px !important;
 }
+
+/* Prevent horizontal scroll globally */
 html, body {
   height: 100%;
   margin: 0;
   overflow-x: hidden;   
 }
-/* ================== Mobile layout adjustments ================== */
+
+/*  Mobile layout adjustments  */
 @media (max-width: 768px) {
 
-  /* Base text size */
+  /* Smaller base font on mobile */
   body{
     font-size:14px;
   }
 
-  /* Splash screen */
+  /* Splash adjustments on mobile */
   .splash{
     padding:0 16px;
     gap:20px;
@@ -276,7 +282,7 @@ html, body {
     gap:12px;
   }
 
-  /* Home (header + main + footer) */
+  /* Home layout full width on mobile */
   .header,
   .main,
   .footer{
@@ -296,7 +302,7 @@ html, body {
     font-size:14px;
   }
 
-  /* Home cards */
+  /* Stack cards vertically on small screens */
   .cards{
     grid-template-columns:1fr;
     gap:14px;
@@ -313,7 +319,7 @@ html, body {
     width:100%;
   }
 
-  /* Ad / maintenance pages */
+  /* Mobile background behavior for ad pages */
   body.ad-page{
     background-position:center top;
   }

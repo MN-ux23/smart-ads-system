@@ -61,7 +61,7 @@
       ],
       [
         'Who are you?',
-        'Khiyal AlFikrah (IMIDEA SmartScreen) — a Saudi company supplying and installing smart/digital display solutions with professional services and continuous technical support. Our vision is to be the Kingdom’s first choice via innovative tech and memorable customer experience.'
+        'Imaginative idea (IMIDEA SmartScreen) — a Saudi company supplying and installing smart/digital display solutions with professional services and continuous technical support. Our vision is to be the Kingdom’s first choice via innovative tech and memorable customer experience.'
       ],
       [
         'What screens do you offer?',
@@ -115,7 +115,7 @@ const b = document.createElement('div');
     feed.scrollTop = feed.scrollHeight;
     return el;
   };
-// Build Quick-Reply Buttons (interactive chips for FAQs)  quick.innerHTML = '';
+// Build Quick-Reply Buttons 
   T.quick.forEach(([q, a]) => {
     const btn = document.createElement('button');
     btn.className = 'imi-chip';

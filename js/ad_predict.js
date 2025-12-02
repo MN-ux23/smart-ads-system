@@ -4,7 +4,7 @@
 'use strict';
 console.log('ad_predict.js loaded');
 
-// ==== 1) BACKEND BASE URL (Render) ====
+//  BACKEND BASE URL (Render) 
 const API_BASE = 'https://smart-ads-system-1.onrender.com';
 
 // Allowed values server-side must match these strings
@@ -58,7 +58,7 @@ document.addEventListener('submit', async (ev) => {
   data.lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
 
   try {
-    // ==== 2) نستخدم رابط Render هنا ====
+    // Sends a POST request to the backend API hosted on Render
     const res = await fetch(`${API_BASE}/api/btp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -83,7 +83,7 @@ document.addEventListener('submit', async (ev) => {
     if (rPlace) rPlace.textContent = json.best_place || '—';
     if (rNote)  rNote.textContent  = json.note || '';
 
-    // افتحي كرت النتيجة ولفي عليه
+    // Display the result card and smoothly scroll it into view
     if (result) {
       result.style.display = 'block';
       result.scrollIntoView({ behavior: 'smooth' });
@@ -91,6 +91,6 @@ document.addEventListener('submit', async (ev) => {
 
   } catch (err) {
     console.error('fetch error:', err);
-    showAlert('تعذّر الاتصال بالخادم. تأكد أن السيرفر يعمل ثم حاولي مرة أخرى.');
+    showAlert('تعذّر الاتصال بالخادم. تأكد أن السيرفر يعمل ثم حاول مرة أخرى.');
   }
 });

@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IMIDEA • Splash</title>
 
+  <!-- Base styles + chatbot styles -->
   <link rel="stylesheet" href="./style/style.css?v=201" />
   <link rel="stylesheet" href="./style/imi_chat.css?v=200" />
 
+  <!-- Chatbot logic -->
   <script defer src="./js/imi_chat1.js"></script>
 </head>
 
 <body>
-  <!-- Splash -->
+  <!-- Intro splash screen (logo + language options) -->
   <section class="splash" id="splash">
     <picture>
       <source srcset="./image/IMI.png" type="image/png">
       <img id="logo" class="logo-splash" src="./image/IMI.png" alt="IMIDEA logo">
     </picture>
 
+    <!-- Language selection buttons -->
     <div class="lang" id="lang">
       <a class="btn" href="./pages/home-ar.html">العربية</a>
       <a class="btn" href="./pages/home-en.html">English</a>
@@ -27,10 +30,13 @@
     <div class="hint" id="hint"></div>
   </section>
 
+  <!-- Main app container (empty until pages load) -->
   <main id="app" role="main" aria-live="polite"></main>
+
+  <!-- Background veil for transitions -->
   <div class="veil" id="veil" aria-hidden="true"></div>
 
-  <!-- Scripts -->
+  <!-- App scripts (general + ads + predictive maintenance) -->
   <script src="./js/script.js"></script>
   <script src="./js/ad_predict.js"></script>
   <script src="./js/pm_predict.js" defer></script>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <!-- Page setup and metadata for the Ad Prediction interface -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ذكاءالإعلانات - IMIDEA</title>
@@ -15,6 +16,7 @@
       <h1>ذكاء الإعلانات</h1>
     <p class="desc">أجب على الأسئلة التالية لنقترح لك <strong>أفضل مكان</strong> للإعلان.</p>
     <form id="ad-form" class="ad-form">
+<!-- This section renders the user input form used to collect campaign attributes for the ad-placement prediction model -->
 
   <div class="row">
     <label>ما نوع نشاطك التجاري؟</label>
@@ -150,13 +152,14 @@
         </div>
     </section>
 
+    <!-- Result card -->
     <section class="result-card" id="result" style="display:none">
       <h3>النتيجة</h3>
       <p class="result-line">📍 أفضل مكان للإعلان: <strong id="r-place"></strong></p>
       <p id="r-note" class="note"></p>
     </section>
   </main>
-
+<!-- Ad prediction script -->
   <script src="../js/ad_predict.js"></script>
   
 </body>

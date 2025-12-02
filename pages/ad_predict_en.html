@@ -1,7 +1,8 @@
-<!-- pages/ad_predict_en.html -->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+  <!-- Page setup and metadata for the Ad Prediction interface -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ad Intelligence – IMIDEA</title>
@@ -10,7 +11,6 @@
 
 <body class="ad-page">
   <main>
-    <!-- same glass card like Arabic -->
     <section class="form-card">
       <h1 class="in-card-title">Ad Intelligence</h1>
       <p class="desc">Answer the following to suggest the <strong>best place</strong> for your ad.</p>
@@ -18,8 +18,7 @@
       <form id="ad-form" class="ad-form">
         <input type="hidden" name="lang" value="en" />
 
-        <!-- Business type -->
-        <div class="row">
+<!-- This section renders the user input form used to collect campaign attributes for the ad-placement prediction model -->        <div class="row">
           <label for="business_type">What type of business do you run?</label>
           <div class="select-wrap">
             <select id="business_type" name="business_type" required>
@@ -34,7 +33,6 @@
           </div>
         </div>
 
-        <!-- Campaign goal -->
         <div class="row">
           <label for="campaign_goal">What is your primary campaign goal?</label>
           <div class="select-wrap">
@@ -48,7 +46,6 @@
           </div>
         </div>
 
-        <!-- Budget level (select to match Arabic styling) -->
         <div class="row">
           <label for="budget_level">What is your budget level?</label>
           <div class="select-wrap">
@@ -61,7 +58,6 @@
           </div>
         </div>
 
-        <!-- Campaign duration -->
         <div class="row">
           <label for="campaign_duration">How long will the campaign run?</label>
           <div class="select-wrap">
@@ -75,7 +71,6 @@
           </div>
         </div>
 
-        <!-- Area type -->
         <div class="row">
           <label for="area_type">What best describes your business area?</label>
           <div class="select-wrap">
@@ -88,7 +83,6 @@
           </div>
         </div>
 
-        <!-- Active hours -->
         <div class="row">
           <label for="active_hours">When are your customers most active?</label>
           <div class="select-wrap">
@@ -101,7 +95,6 @@
           </div>
         </div>
 
-        <!-- Ad style -->
         <div class="row">
           <label for="ad_style">Which ad style do you prefer?</label>
           <div class="select-wrap">
@@ -115,7 +108,6 @@
           </div>
         </div>
 
-        <!-- Desired interaction -->
         <div class="row">
           <label for="interaction_goal">What action do you want customers to take?</label>
           <div class="select-wrap">
@@ -129,7 +121,6 @@
           </div>
         </div>
 
-        <!-- Offer type -->
         <div class="row">
           <label for="offer_type">Does your campaign include an offer?</label>
           <div class="select-wrap">
@@ -143,7 +134,6 @@
           </div>
         </div>
 
-        <!-- Business stage -->
         <div class="row">
           <label for="business_stage">What stage is your business in?</label>
           <div class="select-wrap">
@@ -156,7 +146,7 @@
           </div>
         </div>
 
-        <!-- Buttons (outside any .row) -->
+  
         <div class="actions">
           <button type="submit" class="btn">Get recommendation</button>
           <button type="reset" class="btn btn-ghost">Reset</button>
@@ -171,7 +161,7 @@
       <p id="r-note" class="note"></p>
     </section>
   </main>
-
+<!-- Ad prediction script -->
   <script src="../js/ad_predict.js"></script>
 </body>
 </html>

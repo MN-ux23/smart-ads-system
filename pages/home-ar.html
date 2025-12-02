@@ -83,10 +83,8 @@
       try {
         audio.currentTime = 0;
         audio.play().catch(() => {
-          // Browser may block autoplay – ignore silently
         });
       } catch (e) {
-        // Ignore any unexpected errors
       }
     });
   </script>

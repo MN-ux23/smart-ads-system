@@ -1,8 +1,10 @@
 
-     <!-- pages/maint_predict_en.html -->
+    
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <!-- Page setup and metadata for the predictive maintenance interface -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Predictive Maintenance - IMIDEA</title>
@@ -15,7 +17,9 @@
       <p class="desc">Enter your screen details and we’ll <strong>predict its health</strong> based on operating conditions.</p>
 
       <form id="pm-form" class="ad-form" novalidate>
-  <!-- 1) Screen Type -->
+
+ <!-- This section renders the user input form used to collect campaign attributes for the predictive maintenance model -->
+
   <div class="row">
     <label>Screen Type</label>
     <div class="select-wrap">
@@ -32,7 +36,7 @@
     </div>
   </div>
 
-  <!-- 2) Resolution -->
+  
   <div class="row">
     <label>Screen Resolution</label>
     <div class="select-wrap">
@@ -45,7 +49,7 @@
     </div>
   </div>
 
-  <!-- 3) Content Type -->
+  
   <div class="row">
     <label>Content Type</label>
     <div class="select-wrap">
@@ -59,7 +63,7 @@
     </div>
   </div>
 
-  <!-- 4) Media Source -->
+ 
   <div class="row">
     <label>Media Source</label>
     <div class="select-wrap">
@@ -71,7 +75,7 @@
     </div>
   </div>
 
-  <!-- 5) IP Rating -->
+ 
   <div class="row">
     <label>IP Rating</label>
     <div class="select-wrap">
@@ -87,7 +91,7 @@
     </div>
   </div>
 
-  <!-- 6) Installation Type -->
+ 
   <div class="row">
     <label>Installation Type</label>
     <div class="select-wrap">
@@ -101,7 +105,7 @@
     </div>
   </div>
 
-  <!-- 7) Installation Month -->
+  
   <div class="row">
     <label>Installation Month</label>
     <div class="select-wrap">
@@ -123,7 +127,7 @@
     </div>
   </div>
 
-  <!-- 8) Installation Year -->
+  
   <div class="row">
     <label>Installation Year</label>
     <div class="select-wrap">
@@ -137,14 +141,12 @@
     </div>
   </div>
 
-  <!-- 9) Daily Operating Hours -->
   <div class="row">
     <label>Daily Operating Hours</label>
     <input name="daily_hours" type="number" min="0" max="24" step="0.5" placeholder="e.g., 12" required/>
     <div class="hint">0–24 hours/day</div>
   </div>
 
-  <!-- 10) Ambient Temperature (°C) -->
   <div class="row">
     <label>Ambient Temperature (°C)</label>
     <input
@@ -157,35 +159,35 @@
     />
   </div>
 
-  <!-- 11) Humidity Percentage -->
+  
   <div class="row">
     <label>Humidity Percentage (%)</label>
     <input name="humidity_pct" type="number" min="0" max="100" step="1" placeholder="e.g., 40" />
     <div class="hint">0–100%</div>
   </div>
 
-  <!-- 12) Reboots per Week -->
+ 
   <div class="row">
     <label>Reboots per Week</label>
     <input name="reboots_per_week" type="number" min="0" max="30" step="1" placeholder="e.g., 1" />
     <div class="hint">0–30</div>
   </div>
 
-  <!-- 13) Screen Height (m) -->
+
   <div class="row">
     <label>Screen Height (m)</label>
     <input name="height_m" type="number" min="0.5" max="3" step="0.1" placeholder="e.g., 1.8" required />
     <div class="hint">0.5–3 meters</div>
   </div>
 
-  <!-- 14) Screen Width (m) -->
+  
   <div class="row">
     <label>Screen Width (m)</label>
     <input name="width_m" type="number" min="0.5" max="3" step="0.1" placeholder="e.g., 2.0" required />
     <div class="hint">0.5–3 meters</div>
   </div>
 
-  <!-- 15) Rated Power (W) -->
+
   <div class="row">
     <label>Rated Power (W)</label>
     <input name="rated_power_w" type="number" min="10" max="5000" step="10" placeholder="e.g., 350" required/>
@@ -199,7 +201,7 @@
 </form>
     </section>
 
-    <!-- Result -->
+        <!-- Result card -->
     <section class="result-card" id="result" style="display:none;">
       <p>🛠️ Predicted screen status: <strong id="r-status"></strong></p>
       <p id="r-note" class="note"></p>
@@ -208,6 +210,7 @@
   </main>
 
   
+<!-- predictive maintenance script -->
 
   <script src="../js/pm_predict.js"></script>
 </body>

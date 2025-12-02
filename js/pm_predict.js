@@ -28,7 +28,7 @@ if (!window.__PM_BIND_ONCE__) {
     }
   }
 
-  // Handle <form> submission for Predictive Maintenance
+  // Handle form submission for Predictive Maintenance
   document.addEventListener('submit', async (ev) => {
     const form = ev.target;
     if (!form || form.id !== 'pm-form') return;

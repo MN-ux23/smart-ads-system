@@ -1,1 +1,2 @@
-web: gunicorn app:app
+# Defines the production command used by the deployment platform to run the Flask app with Gunicorn.
+web: gunicorn app:app 

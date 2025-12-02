@@ -159,11 +159,11 @@ def prepare_X(payload: dict) -> pd.DataFrame:
     # Apply same feature engineering used in training
     df = fe_engineer(df)
 
-    # Drop any target/ID columns if present (safety)
+    # Drop any target/ID columns 
     drop_cols = [c for c in ['screen_id','status','y_multi','y_bin'] if c in df.columns]
     X_all = df.drop(columns=drop_cols, errors='ignore')
 
-    # One-hot encoding: match notebook logic (drop_first=False)
+    # One-hot encoding: match notebook logic 
     cat_cols = [c for c in X_all.columns if X_all[c].dtype == 'object']
     X_tab = pd.get_dummies(X_all, columns=cat_cols, drop_first=False)
 
@@ -216,7 +216,7 @@ def pm_predict():
         "debug": {"raw_pred": pred}
     })
 
-
+# run the API locally on port 8000
 if __name__ == "__main__":
     print(">>> IMIDEA APIs running at http://127.0.0.1:8000")
     app.run(host="127.0.0.1", port=8000, debug=True)

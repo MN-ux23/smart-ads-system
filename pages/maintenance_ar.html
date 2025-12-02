@@ -1,7 +1,9 @@
-<!-- pages/maint_predict_ar.html -->
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+      <!-- Page setup and metadata for the predictive maintenance interface -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>الصيانة التنبؤية - IMIDEA</title>
@@ -12,9 +14,9 @@
     <section class="form-card">
       <h1 class="in-card-title">الصيانة التنبؤية</h1>
       <p class="desc">أدخل بيانات الشاشة ليتم <strong>التنبؤ بحالتها بدقة</strong> بناءً على الظروف التشغيلية.</p>
-
       <form id="pm-form" class="ad-form" novalidate>
-        <!-- 1) نوع الشاشة -->
+<!-- This section renders the user input form used to collect campaign attributes for the predictive maintenance model -->
+
         <div class="row">
           <label>نوع الشاشة</label>
           <div class="select-wrap">
@@ -187,12 +189,14 @@
       </form>
     </section>
 
+    <!-- Result card -->
     <section class="result-card" id="result" style="display:none;">
       <p>🛠️ الحالة المتوقعة للشاشة: <strong id="r-status"></strong></p>
       <p id="r-note" class="note"></p>
       <ul id="r-tips"></ul>
     </section>
   </main>
+<!-- predictive maintenance script -->
 
   <script src="../js/pm_predict.js"></script>
 </body>
