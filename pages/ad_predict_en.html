@@ -1,0 +1,177 @@
+<!-- pages/ad_predict_en.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ad Intelligence – IMIDEA</title>
+  <link rel="stylesheet" href="../style/style.css" />
+</head>
+
+<body class="ad-page">
+  <main>
+    <!-- same glass card like Arabic -->
+    <section class="form-card">
+      <h1 class="in-card-title">Ad Intelligence</h1>
+      <p class="desc">Answer the following to suggest the <strong>best place</strong> for your ad.</p>
+
+      <form id="ad-form" class="ad-form">
+        <input type="hidden" name="lang" value="en" />
+
+        <!-- Business type -->
+        <div class="row">
+          <label for="business_type">What type of business do you run?</label>
+          <div class="select-wrap">
+            <select id="business_type" name="business_type" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="restaurant_cafe">Restaurant / Café</option>
+              <option value="retail_fashion">Retail / Fashion</option>
+              <option value="pharmacy_health">Pharmacy / Health</option>
+              <option value="electronics">Electronics</option>
+              <option value="supermarket">Supermarket</option>
+              <option value="services">Services</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Campaign goal -->
+        <div class="row">
+          <label for="campaign_goal">What is your primary campaign goal?</label>
+          <div class="select-wrap">
+            <select id="campaign_goal" name="campaign_goal" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="sales">Increase sales</option>
+              <option value="awareness">Build awareness</option>
+              <option value="new_customers">Acquire new customers</option>
+              <option value="footfall">Increase store footfall</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Budget level (select to match Arabic styling) -->
+        <div class="row">
+          <label for="budget_level">What is your budget level?</label>
+          <div class="select-wrap">
+            <select id="budget_level" name="budget_level" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Campaign duration -->
+        <div class="row">
+          <label for="campaign_duration">How long will the campaign run?</label>
+          <div class="select-wrap">
+            <select id="campaign_duration" name="campaign_duration" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="1_week">1 week</option>
+              <option value="2_weeks">2 weeks</option>
+              <option value="1_month">1 month</option>
+              <option value="3_months">3 months</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Area type -->
+        <div class="row">
+          <label for="area_type">What best describes your business area?</label>
+          <div class="select-wrap">
+            <select id="area_type" name="area_type" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="residential">Residential</option>
+              <option value="commercial">Commercial</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active hours -->
+        <div class="row">
+          <label for="active_hours">When are your customers most active?</label>
+          <div class="select-wrap">
+            <select id="active_hours" name="active_hours" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="morning">Morning</option>
+<option value="noon">Midday / Noon</option>
+              <option value="evening">Evening</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Ad style -->
+        <div class="row">
+          <label for="ad_style">Which ad style do you prefer?</label>
+          <div class="select-wrap">
+            <select id="ad_style" name="ad_style" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="text">Text</option>
+              <option value="visual">Visual / Image</option>
+              <option value="interactive">Interactive</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Desired interaction -->
+        <div class="row">
+          <label for="interaction_goal">What action do you want customers to take?</label>
+          <div class="select-wrap">
+            <select id="interaction_goal" name="interaction_goal" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="visit_store">Visit the store</option>
+              <option value="visit_website">Visit the website</option>
+              <option value="call_whatsapp">Call / WhatsApp</option>
+              <option value="scan_qr">Scan a QR code</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Offer type -->
+        <div class="row">
+          <label for="offer_type">Does your campaign include an offer?</label>
+          <div class="select-wrap">
+            <select id="offer_type" name="offer_type" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="none">No offer</option>
+              <option value="discount">Discount</option>
+              <option value="bundle">Bundle / Combo</option>
+              <option value="new_launch">New launch</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Business stage -->
+        <div class="row">
+          <label for="business_stage">What stage is your business in?</label>
+          <div class="select-wrap">
+            <select id="business_stage" name="business_stage" required>
+              <option value="" disabled selected>Select…</option>
+              <option value="new">New</option>
+              <option value="growing">Growing</option>
+              <option value="established">Established</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Buttons (outside any .row) -->
+        <div class="actions">
+          <button type="submit" class="btn">Get recommendation</button>
+          <button type="reset" class="btn btn-ghost">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Result card -->
+    <section class="result-card" id="result" style="display:none">
+      <h3>Result</h3>
+      <p class="result-line">📍 Recommended place: <strong id="r-place"></strong></p>
+      <p id="r-note" class="note"></p>
+    </section>
+  </main>
+
+  <script src="../js/ad_predict.js"></script>
+</body>
+</html>

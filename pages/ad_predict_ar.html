@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ذكاءالإعلانات - IMIDEA</title>
+  
+  <link rel="stylesheet" href="../style/style.css?v=14" />
+</head>
+<body class="ad-page rtl">
+  <main class="ad-card">
+   
+
+    <section class="form-card">
+      <h1>ذكاء الإعلانات</h1>
+    <p class="desc">أجب على الأسئلة التالية لنقترح لك <strong>أفضل مكان</strong> للإعلان.</p>
+    <form id="ad-form" class="ad-form">
+
+  <div class="row">
+    <label>ما نوع نشاطك التجاري؟</label>
+    <div class="select-wrap">
+      <select name="business_type" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="restaurant_cafe">مطعم/مقهى</option>
+        <option value="retail_fashion">تجزئة/ملابس</option>
+        <option value="pharmacy_health">صيدلية/صحة</option>
+        <option value="electronics">تقنية/إلكترونيات</option>
+        <option value="supermarket">سوبرماركت</option>
+        <option value="services">خدمات</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>ما الهدف من حملتك الإعلانية؟</label>
+    <div class="select-wrap">
+      <select name="campaign_goal" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="sales">زيادة المبيعات</option>
+        <option value="awareness">نشر الوعي</option>
+        <option value="new_customers">جذب عملاء جدد</option>
+        <option value="footfall">زيادة الزيارات للموقع/الفرع</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>ما مستوى الميزانية؟</label>
+    <div class="select-wrap">
+      <select name="budget_level" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="low">منخفضة</option>
+        <option value="medium">متوسطة</option>
+        <option value="high">مرتفعة</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>كم المدة التي تريد تشغيل الإعلان فيها؟</label>
+    <div class="select-wrap">
+      <select name="campaign_duration" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="1_week">أسبوع</option>
+        <option value="2_weeks">أسبوعان</option>
+        <option value="1_month">شهر</option>
+        <option value="3_months">3 أشهر</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>أين يقع نشاطك غالبًا؟</label>
+    <div class="select-wrap">
+      <select name="area_type" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="residential">سكنية</option>
+        <option value="commercial">تجارية</option>
+        <option value="mixed">مختلطة</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>متى تكون ساعات النشاط الأعلى لدى عملائك؟</label>
+    <div class="select-wrap">
+      <select name="active_hours" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="morning">صباح</option>
+        <option value="noon">ظهر</option>
+        <option value="evening">مساء</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>كيف تفضل أن يكون الإعلان؟</label>
+    <div class="select-wrap">
+      <select name="ad_style" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="text">نصي</option>
+        <option value="visual">مرئي</option>
+        <option value="interactive">تفاعلي</option>
+        <option value="video">فيديو</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>ماذا تتوقع من الجمهور بعد رؤية الإعلان؟</label>
+    <div class="select-wrap">
+      <select name="interaction_goal" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="visit_store">زيارة المتجر</option>
+        <option value="visit_website">زيارة الموقع</option>
+        <option value="call_whatsapp">الاتصال/واتساب</option>
+        <option value="scan_qr">مسح QR</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>هل يتضمن إعلانك عروضًا؟</label>
+    <div class="select-wrap">
+      <select name="offer_type" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="none">بدون عروض</option>
+        <option value="discount">خصم</option>
+        <option value="bundle">عرض باقة</option>
+        <option value="new_launch">إطلاق منتج جديد</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <label>في أي مرحلة مشروعك الآن؟</label>
+<div class="select-wrap">
+      <select name="business_stage" required>
+        <option value="" disabled selected>اختيار...</option>
+        <option value="new">جديد</option>
+        <option value="growing">في نمو</option>
+        <option value="established">مستقر</option>
+      </select>
+    </div>
+  </div>
+
+        <div class="row actions">
+          <button type="submit" class="btn">احسب الأفضل</button>
+          <button type="reset" class="btn btn-ghost">إعادة</button>
+        </div>
+    </section>
+
+    <section class="result-card" id="result" style="display:none">
+      <h3>النتيجة</h3>
+      <p class="result-line">📍 أفضل مكان للإعلان: <strong id="r-place"></strong></p>
+      <p id="r-note" class="note"></p>
+    </section>
+  </main>
+
+  <script src="../js/ad_predict.js"></script>
+</body>
+</html>

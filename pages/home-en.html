@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Home - IMIDEA SmartScreen</title>
+
+  <link rel="stylesheet" href="../style/style.css?v=201">
+  <link rel="stylesheet" href="../style/imi_chat.css?v=200">
+
+</head>
+
+<body class="ltr">
+  <!-- Welcome audio (English) -->
+  <audio id="welcome-en" src="../audio/welcome-en.mp3" preload="auto"></audio>
+
+  <header class="header">
+    <img src="../image/IMI.png" alt="IMIDEA SmartScreen" class="logo-brand">
+  </header>
+
+  <main class="main">
+    <h1>Welcome to IMIDEA</h1>
+    <p class="sub">Every service here is designed to make your journey simpler and smarter.</p>
+
+    <section class="cards">
+      <div class="card">
+        <h3>Ad Intelligence</h3>
+        <p class="desc">Provide a few simple details and we'll suggest the best place for your campaign.</p>
+        <a class="btn" href="/pages/ad_predict_en.html" data-nav>Get Started</a>
+      </div>
+
+      <div class="card">
+        <h3>Predictive Maintenance</h3>
+        <p class="desc">Predict failures early to reduce downtime and ensure screen efficiency.</p>
+        <a class="btn btn-ghost" href="/pages/maintenance_en.html" data-nav>Get Started</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- IMI Chatbot (EN) -->
+  <div id="imi-chat" class="imi-closed no-input" data-lang="en" aria-live="polite">
+    
+    <button id="imi-toggle" aria-label="Open chat">
+      <img id="imi-bot" src="../image/robot1.png" alt="IMI – Smart Assistant">
+      <span class="imi-ping" aria-hidden="true"></span>
+    </button>
+
+    <section id="imi-panel" role="dialog" aria-modal="false" dir="ltr">
+      
+      <header class="imi-header">
+        <div class="imi-id">
+          <img src="../image/robot1.png" alt="">
+          <div>
+            <b id="imi-name">IMI</b>
+            <small id="imi-sub">Smart Assistant</small>
+          </div>
+        </div>
+        <button id="imi-close" aria-label="Close">×</button>
+      </header>
+
+      <div id="imi-feed" class="imi-feed" dir="ltr"></div>
+      <div id="imi-quick" class="imi-quick"></div>
+
+      <form id="imi-form" class="imi-form" autocomplete="off" hidden>
+        <input id="imi-input" type="text" placeholder="Type your question…">
+        <button type="submit">➤</button>
+      </form>
+
+    </section>
+
+  </div>
+
+  <!-- Chatbot script -->
+  <script src="../js/imi_chat1.js?v=200"></script>
+
+  <!-- Auto-play welcome audio once per page load -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const audio = document.getElementById("welcome-en");
+      if (!audio) return;
+
+      try {
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          // Autoplay may be blocked by browser; ignore errors
+        });
+      } catch (e) {
+        // Silent fail if audio cannot be played
+      }
+    });
+  </script>
+</body>
+</html>

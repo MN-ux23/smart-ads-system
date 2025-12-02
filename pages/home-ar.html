@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الواجهة العربية - IMIDEA SmartScreen</title>
+
+  <link rel="stylesheet" href="../style/style.css?v=201">
+  <link rel="stylesheet" href="../style/imi_chat.css?v=200">
+ 
+</head>
+
+<body class="rtl">
+
+  <!-- Arabic welcome audio -->
+  <audio id="welcome-ar" src="../audio/welcome-ar.mp3" preload="auto"></audio>
+
+  <header class="header">
+    <img src="../image/IMI.png" alt="IMIDEA SmartScreen" class="logo-brand">
+  </header>
+
+  <main class="main">
+    <h1>مرحبًا بك في خيال الفكرة</h1>
+    <p class="sub">كل خدمة هنا صُممت لتجعل تجربتك أبسط وأذكى.</p>
+
+    <section class="cards">
+      <div class="card">
+        <h3>ذكاء الإعلانات</h3>
+        <p class="desc">اكتب بياناتك البسيطة، ونقترح لك أفضل مكان مناسب لحملتك.</p>
+        <a class="btn" href="/pages/ad_predict_ar.html" data-nav>ابدأ الآن</a>
+      </div>
+
+      <div class="card">
+        <h3>الصيانة التنبؤية</h3>
+        <p class="desc">
+          تنبؤ بالأعطال مبكرًا وقلّل التوقفات لضمان استمرارية الشاشات بكفاءة.
+        </p>
+        <a class="btn btn-ghost" href="/pages/maintenance_ar.html" data-nav>ابدأ الآن</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- IMI Chatbot (Arabic Version) -->
+  <div id="imi-chat" class="imi-closed no-input" data-lang="ar" aria-live="polite">
+
+    <button id="imi-toggle" aria-label="Open chat">
+      <img id="imi-bot" src="../image/robot1.png" alt="IMI – Smart Assistant">
+      <span class="imi-ping" aria-hidden="true"></span>
+    </button>
+
+    <section id="imi-panel" role="dialog" aria-modal="false" dir="rtl">
+      <header class="imi-header">
+        <div class="imi-id">
+          <img src="../image/robot1.png" alt="">
+          <div>
+            <b id="imi-name">إيمي</b>
+            <small id="imi-sub">المساعدة الذكية</small>
+          </div>
+        </div>
+        <button id="imi-close" aria-label="Close">×</button>
+      </header>
+
+      <div id="imi-feed" class="imi-feed" dir="rtl"></div>
+      <div id="imi-quick" class="imi-quick"></div>
+
+      <form id="imi-form" class="imi-form" autocomplete="off" hidden>
+        <input id="imi-input" type="text" placeholder="اكتب سؤالك…">
+        <button type="submit">➤</button>
+      </form>
+    </section>
+
+  </div>
+
+  <!-- Chatbot script -->
+  <script src="../js/imi_chat1.js?v=200"></script>
+
+  <!-- Auto-play Arabic welcome audio on page load -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const audio = document.getElementById("welcome-ar");
+      if (!audio) return;
+
+      try {
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          // Browser may block autoplay – ignore silently
+        });
+      } catch (e) {
+        // Ignore any unexpected errors
+      }
+    });
+  </script>
+
+</body>
+</html>

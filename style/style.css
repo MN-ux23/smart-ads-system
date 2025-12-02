@@ -1,0 +1,356 @@
+
+/*  IMIDEA – FULL STYLES (home/splash/chatbot unchanged)                      */
+/*  + Unified ads/prediction forms scoped under .ad-page                       */
+
+
+
+:root{
+  --violet:#a186df; --violet-2:#6850a2; --blue:#9051d3;
+  --card:#ffffff; --text:#fff;
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100%; margin:0 }
+html{
+  scroll-behavior:smooth;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+body{
+  color:var(--text);
+  background:
+    linear-gradient(180deg, rgba(3,7,40,.70), rgba(3,0,30,.90)),
+    url("../image/background1.jpeg") center/cover no-repeat fixed;
+  min-height:100vh;
+  display:flex;              
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow-x:hidden;
+  font-size:16px;
+  line-height:1.6;
+}
+
+/* ===== Splash ===== */
+.splash{
+  position: fixed; inset: 0; display: grid; place-content: center; gap: 28px;
+  padding: 0 20px; width: 100%; min-height: 100vh; z-index: 1; text-align: center;
+}
+.logo-splash{
+  width: clamp(200px, 22vw, 340px); user-select: none; pointer-events: none; background: transparent;
+  filter: drop-shadow(0 8px 28px rgba(0,0,0,.28)) brightness(1.08);
+  opacity: 0; transform: scale(.92) translateY(22px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.logo-splash.show{ opacity: 1; transform: scale(1) translateY(0); }
+.lang{ display:flex; justify-content:center; align-items:center; gap:18px; opacity:0; transform:translateY(12px); transition:opacity .8s, transform .8s; }
+.lang.show{ opacity:1; transform:translateY(0); }
+.btn{
+  border:1px solid rgba(255,255,255,.28); cursor:pointer; padding:12px 24px; border-radius:999px;
+  background: rgba(255,255,255,.14); color:#fff; font-weight:800; font-size:clamp(14px,1.2vw,16px);
+  letter-spacing:.2px; backdrop-filter: blur(6px);
+  transition: transform .12s, background .25s, opacity .25s, border-color .25s;
+}
+.btn:hover{ background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.38) }
+.btn:active{ transform:scale(.97) }
+.splash .btn{
+  display:inline-flex; align-items:center; justify-content:center; height:32px; padding:0 14px; min-width:82px; line-height:1;
+  border-radius:999px; font-weight:800; letter-spacing:.2px; background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34); box-shadow:0 6px 18px rgba(0,0,0,.18); backdrop-filter:saturate(140%) blur(3px);
+
+}
+.splash .btn:hover{ background:rgba(255,255,255,.24); border-color:rgba(255,255,255,.44); box-shadow:0 8px 22px rgba(0,0,0,.22); }
+
+/* ===== Home (AR + EN) ===== */
+.header, .main, .footer{ width:min(820px, 90%); margin-inline:auto }
+@media (min-width:1200px){ .header, .main, .footer{ width:min(900px, 90%); } }
+.logo-brand{ width: clamp(120px, 14vw, 220px); display:block; filter: drop-shadow(0 5px 14px rgba(0,0,0,.2)) brightness(1.05); }
+html[dir="rtl"] .logo-brand{ margin: 18px 32px 6px auto; text-align:right; }
+html[dir="ltr"] .logo-brand{ margin: 18px auto 6px 32px; text-align:left; }
+.main{ text-align:center; padding: 28px 10px 0 }
+h1{ font-weight:800; font-size: clamp(26px, 3.6vw, 44px); margin: 6px 0 4px }
+.sub{ opacity:.9; margin: 0 0 22px; font-size: clamp(16px, 1.8vw, 20px) }
+
+.cards{
+  display:grid; gap:20px; grid-template-columns: 1fr; justify-items:center; width:min(960px, 92%); margin:10px auto 0;
+}
+@media (min-width: 820px){ .cards{ grid-template-columns: repeat(2, minmax(300px, 1fr)); gap:22px; } }
+
+/* Card */
+.card{
+  width:100%; max-width:620px; background: rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2); border-radius:16px; padding:22px 18px;
+  box-shadow:0 10px 24px rgba(14,18,35,.18); backdrop-filter: blur(8px);
+  text-align:center; transition: transform .18s, box-shadow .18s, background .18s;
+  display:flex; flex-direction:column;
+}
+@media (min-width:1200px){ 
+.card{ max-width:720px; } }
+.card .desc{ min-height:3.6em; color:#eef1ff; opacity:.95; line-height:1.6; font-size:clamp(15px,1.4vw,18px) }
+.card .btn{ margin-top:auto; }
+
+/* Footer */
+.footer{ text-align:center; opacity:.78; width:100%; display:block; margin-top:34px;
+  font-size:clamp(13px, 1.2vw, 15px); color:#03073a; }
+
+/* ===== Small screens (مشترك) ===== */
+@media (max-width:600px){ .splash{ gap:24px; padding: 0 14px } }
+
+
+/*                          Ads / Prediction Pages                            */
+/*            (ONLY when body has class .ad-page – others unaffected)         */
+
+
+
+body.ad-page{
+  display:block;
+  min-height:100vh;
+  overflow-x:hidden; overflow-y:auto;
+  color:#fff;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.05)),
+    url("../image/background.jpg") center/cover no-repeat fixed;
+}
+body.ad-page::before{
+  content:""; position:fixed; inset:0;
+  background: rgba(0,0,0,.38);
+  backdrop-filter: blur(3px);
+  z-index:0;
+}
+
+
+.ad-page main{
+  position:relative; z-index:1;
+  width:min(980px, 94%);
+  margin-inline:auto;
+  padding: 32px 0 28px;
+}
+
+
+.ad-page .form-card{
+  width:min(840px, 94%);
+  margin: 14px auto 28px;
+  background: rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:16px;
+  box-shadow:0 16px 32px rgba(0,0,0,.20);
+  backdrop-filter: blur(8px);
+  padding: clamp(16px, 2.4vw, 22px);
+  text-align:center;
+}
+
+
+.ad-page .form-card .in-card-title{
+  margin:0 0 6px;
+  font-weight:800;
+  font-size:clamp(22px,3.2vw,32px);
+  color:#fff;
+}
+.ad-page .form-card .desc{
+  margin:0 0 20px;
+  color:#eef1ff; opacity:.96;
+  font-size:clamp(14px,1.6vw,16px);
+}
+
+
+.ad-page .ad-form{ display:flex; flex-direction:column; gap:16px; }
+.ad-page .ad-form .row{ display:flex; flex-direction:column; gap:8px; text-align:start; }
+.ad-page .ad-form .row > label{ font-weight:800; font-size:18px; opacity:.98; color:#fff; }
+
+
+.ad-page .ad-form .select-wrap select,
+.ad-page .ad-form select,
+.ad-page .ad-form input[type="month"],
+.ad-page .ad-form input[type="text"],
+.ad-page .ad-form input[type="number"],
+form#ad-form .select-wrap select,
+form#ad-form select,
+form#ad-form input[type="month"],
+form#ad-form input[type="text"],
+form#ad-form input[type="number"]{
+  width:100%;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.18) !important;
+  color:#fff !important;
+  font-size:18px; font-weight:700;
+  outline:none; transition:.25s;
+}
+.ad-page .ad-form select:focus,
+.ad-page .ad-form input[type="month"]:focus,
+.ad-page .ad-form input[type="text"]:focus,
+.ad-page .ad-form input[type="number"]:focus,
+form#ad-form select:focus,
+form#ad-form input[type="month"]:focus,
+form#ad-form input[type="text"]:focus,
+form#ad-form input[type="number"]:focus{
+  background: rgba(255,255,255,.22) !important;
+  border-color: rgba(255,255,255,.55);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.18);
+}
+.ad-page .ad-form option,
+form#ad-form option{ background:#15045bcb; color:#fff; font-size:18px; }
+
+
+.ad-page .ad-form .radios,
+form#ad-form .radios{
+  display:flex; flex-wrap:wrap; gap:18px 22px; align-items:center;
+}
+.ad-page .ad-form .radios label,
+form#ad-form .radios label{
+  display:inline-flex; align-items:center; gap:8px; font-size:18px; font-weight:700; color:#fff;
+}
+.ad-page .ad-form input[type="radio"],
+form#ad-form input[type="radio"]{ transform:scale(1.2); accent-color:#ffffff; }
+
+
+.ad-page .ad-form .actions,
+form#ad-form .actions{ display:flex; gap:12px; justify-content:center; margin-top:8px; }
+.ad-page .ad-form .actions .btn,
+form#ad-form .actions .btn{
+  border:1px solid rgba(255,255,255,.28);
+cursor:pointer; padding:12px 22px; border-radius:999px;
+  background:rgba(255,255,255,.16); color:#fff; font-weight:800; font-size:16px;
+  backdrop-filter: blur(6px);
+  transition: transform .12s ease, background .25s ease, border-color .25s ease;
+}
+.ad-page .ad-form .actions .btn:hover,
+form#ad-form .actions .btn:hover{ background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.38) }
+
+
+.ad-page .result-card{
+  width:min(840px,94%); margin: 14px auto 36px;
+  background: rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:16px; padding:20px; text-align:start;
+}
+.ad-page .result-line{ font-size:20px; font-weight:800; }
+.ad-page .note{ font-size:16px; opacity:.92 }
+
+
+@media (max-width:600px){
+  .ad-page .form-card{ padding-bottom: 28px; }
+}
+
+.ad-page .ad-form .actions {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  margin-top: 30px !important;
+  padding-top: 10px !important;
+}
+
+
+.ad-page .ad-form .row.actions {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  margin-top: 30px !important;
+  padding-top: 10px !important;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;   
+}
+/* ================== Mobile layout adjustments ================== */
+@media (max-width: 768px) {
+
+  /* Base text size */
+  body{
+    font-size:14px;
+  }
+
+  /* Splash screen */
+  .splash{
+    padding:0 16px;
+    gap:20px;
+  }
+  .logo-splash{
+    width:70vw;
+  }
+  .lang{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  /* Home (header + main + footer) */
+  .header,
+  .main,
+  .footer{
+    width:100%;
+    margin-inline:auto;
+  }
+
+  .main{
+    padding:20px 16px 32px;
+  }
+
+  h1{
+    font-size:22px;
+  }
+
+  .sub{
+    font-size:14px;
+  }
+
+  /* Home cards */
+  .cards{
+    grid-template-columns:1fr;
+    gap:14px;
+    width:100%;
+  }
+
+  .card{
+    max-width:100%;
+    padding:18px 14px;
+  }
+
+  .card .btn,
+  .card .btn-ghost{
+    width:100%;
+  }
+
+  /* Ad / maintenance pages */
+  body.ad-page{
+    background-position:center top;
+  }
+
+  .ad-page main{
+    width:100%;
+    padding:20px 12px 28px;
+  }
+
+  .ad-page .form-card,
+  .ad-page .result-card{
+    width:100%;
+    margin-inline:auto;
+    padding:16px 14px;
+  }
+
+  .ad-page .ad-form .row{
+    gap:6px;
+  }
+
+  .ad-page .ad-form .radios{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .ad-page .ad-form .actions,
+  .ad-page .ad-form .row.actions{
+    flex-direction:column !important;
+  }
+
+  .ad-page .ad-form .actions .btn{
+    width:100%;
+  }
+
+  /* Chatbot position on small screens */
+  #imi-chat{
+    bottom:12px;
+    right:12px;
+  }
+}

@@ -1,0 +1,313 @@
+/* === IMI Chat — STYLE (bigger + clean, no crazy intro) ================= */
+
+/* Isolate chat styles */
+#imi-chat,
+#imi-chat * {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* Root container: bot button + panel */
+#imi-chat {
+  position: fixed !important;
+  right: 80px !important;
+  bottom: 40px !important;
+  z-index: 99999 !important;
+  transition: left .45s ease, right .45s ease, transform .30s ease, opacity .3s ease;
+}
+
+/* Bot button (bigger) */
+#imi-toggle {
+  position: relative;
+  display: inline-block !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  width: 150px !important;
+  height: auto !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .15s ease;
+}
+#imi-toggle:hover {
+  transform: scale(1.04);
+}
+
+/* Bot image */
+#imi-toggle img {
+  display: block !important;
+  width: 120% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  animation: imi-float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Ping hidden (you do not need it now) */
+#imi-toggle .imi-ping {
+  display: none !important;
+}
+
+/* Float animation */
+@keyframes imi-float {
+  0%   { transform: scale(1.8) translateY(0) rotate(0); }
+  50%  { transform: scale(1.8) translateY(-6px) rotate(1deg); }
+  100% { transform: scale(1.8) translateY(0) rotate(0); }
+}
+
+/* ===== Expanded panel ===== */
+
+#imi-panel {
+  position: fixed !important;
+  right: clamp(12px, calc(50vw - 520px), 40px) !important;
+  bottom: 18px !important;
+  width: 440px;
+  height: 78vh;
+  max-height: 78vh;
+  display: none;
+
+  background: linear-gradient(180deg, #1b1238 0%, #33215f 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+#imi-chat.open #imi-panel {
+  display: grid !important;
+  grid-template-rows: auto 1fr auto;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Header */
+#imi-panel .imi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #281849;
+  border-bottom: 1px solid rgba(255, 255, 255, 45);
+}
+#imi-panel .imi-id {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#imi-panel .imi-id img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+#imi-panel .imi-header b {
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1;
+  color: #fff;
+}
+#imi-panel .imi-header small {
+  opacity: .9;
+  font-size: 12.5px;
+  display: block;
+  margin-top: 2px;
+  color: #fff;
+}
+#imi-panel #imi-close {
+  background: none;
+  color: #f6f5f7;
+  border: 0;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+#imi-panel #imi-close:hover {
+  background: rgba(255,255,255,.08);
+}
+
+/* Messages area */
+#imi-panel .imi-feed {
+  padding: 12px 14px;
+  display: grid;
+  gap: 10px;
+  overflow: auto;
+  min-height: 0;
+  max-height: 24vh;
+  scroll-behavior: smooth;
+}
+#imi-panel .imi-bot,
+#imi-panel .imi-user {
+  padding: 12px 14px;
+  border-radius: 12px;
+  max-width: 90%;
+  font-size: .96rem;
+  line-height: 1.55;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+#imi-panel .imi-bot {
+  background: rgba(255, 255, 255, 12);
+  color: #0e0d0d;
+}
+#imi-panel .imi-user {
+  background: rgba(255, 255, 255, 20);
+  color: #121212;
+  justify-self: end;
+}
+
+/* Quick buttons grid */
+#imi-panel .imi-quick {
+  padding: 14px;
+  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  align-content: start;
+  border-top: 1px solid rgb(111, 24, 125);
+  max-height: calc(78vh - 56px - 40vh);
+  overflow: auto;
+}
+#imi-panel .imi-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px;
+  border: 0;
+  border-radius: 999px;
+  text-align: center;
+  background:rgba(255, 255, 255, 12);
+  color: #0a0a0b;
+  font-size: .95rem;
+  cursor: pointer;
+transition: filter .15s ease, transform .08s ease;
+}
+#imi-panel .imi-chip:hover {
+  background: rgba(255, 255, 255, 22);
+}
+#imi-panel .imi-chip:active {
+  transform: scale(.98);
+}
+
+/* Scrollbars */
+#imi-panel .imi-feed::-webkit-scrollbar,
+#imi-panel .imi-quick::-webkit-scrollbar {
+  width: 10px;
+}
+#imi-panel .imi-feed::-webkit-scrollbar-thumb,
+#imi-panel .imi-quick::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.18);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Hide manual input form (quick answers only) */
+#imi-panel .imi-form {
+  display: none !important;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  #imi-panel {
+    right: 50%;
+    transform: translate(50%, 12px);
+    width: 96vw;
+    height: 88vh;
+    max-height: 88vh;
+    border-radius: 18px;
+  }
+  #imi-chat.open #imi-panel {
+    transform: translate(50%, 0);
+  }
+  #imi-panel .imi-quick {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  #imi-chat {
+    right: 12px !important;
+    bottom: 14px !important;
+  }
+  #imi-toggle {
+    width: 70px !important;
+  }
+  #imi-panel {
+    width: min(92vw, 340px) !important;
+    bottom: 84px !important;
+  }
+}
+
+/* دفع الروبوت لليسار قليلاً في الواجهة الإنجليزية */
+html[dir="ltr"] #imi-chat {
+  right: 80px !important;
+  bottom: 40px !important;   /* زيدي الرقم لو تبينه يتحرك أكثر */
+}
+/* ===== IMI Chat – Mobile layout (phones) ===== */
+@media (max-width: 600px) {
+
+  /* Chat root: keep it bottom-right */
+  #imi-chat {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+
+  /* Robot size on phones (medium) */
+  #imi-toggle {
+    width: 135px !important;
+    height: auto !important;
+  }
+
+  #imi-toggle img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    animation: none !important;   /* no big float on mobile */
+  }
+
+  /* Chat panel: full visible between left & right */
+  #imi-panel {
+    position: fixed !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+
+    bottom: 100px !important;     /* a bit above the robot */
+
+    height: 72vh !important;
+    max-height: 72vh !important;
+    border-radius: 16px !important;
+
+    transform: translateY(12px) !important;
+  }
+
+  #imi-chat.open #imi-panel {
+    transform: translateY(0) !important;
+  }
+
+  /* Messages area height */
+  #imi-panel .imi-feed {
+    max-height: calc(72vh - 150px) !important; /* header + chips */
+  }
+
+  /* Chips in a single column */
+  #imi-panel .imi-quick {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Override LTR rule on mobile so it does not push too far */
+  html[dir="ltr"] #imi-chat,
+  html[dir="rtl"] #imi-chat {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+}
