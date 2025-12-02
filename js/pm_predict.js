@@ -1,9 +1,14 @@
-
-
 'use strict';
+
 // Detect current page language (Arabic vs English)
-const IS_AR = (document.documentElement.lang || '').toLowerCase().startsWith('ar');
-console.log("IS_AR=". IS_AR);
+const IS_AR = (document.documentElement.lang || '')
+  .toLowerCase()
+  .startsWith('ar');
+console.log("IS_AR =", IS_AR);
+
+// Base backend URL (Render)
+const BACKEND_BASE =
+  window.BACKEND_BASE || 'https://smart-ads-system-1.onrender.com';
 
 // Avoid double-binding event listeners
 if (!window.__PM_BIND_ONCE__) {
@@ -11,13 +16,16 @@ if (!window.__PM_BIND_ONCE__) {
   console.log('pm_predict.js loaded (bound once)');
 
   // API endpoint for PM predictions
-  const ENDPOINT_PM = 'http://127.0.0.1:8000/api/pm_predict';
+  const ENDPOINT_PM = `${BACKEND_BASE}/api/pm_predict`;
   window.PM_ENDPOINT = ENDPOINT_PM;
 
   // Helper for error alerts
-  function showAlert(msg){
-    try { alert(msg); } 
-    catch { console.log('alert:', msg); }
+  function showAlert(msg) {
+    try {
+      alert(msg);
+    } catch (e) {
+      console.log('alert:', msg);
+    }
   }
 
   // Handle <form> submission for Predictive Maintenance
@@ -26,20 +34,22 @@ if (!window.__PM_BIND_ONCE__) {
     if (!form || form.id !== 'pm-form') return;
     ev.preventDefault();
 
-    const fd   = new FormData(form);
+    const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
 
     // Check required fields exist before sending to backend
     const required = [
-      'model','resolution','content_type','media_source','ip_rating',
-      'install_type','install_month','daily_hours','humidity_pct',
-      'reboots_per_week','rated_power_w','height_m','width_m','install_year'
+      'model', 'resolution', 'content_type', 'media_source', 'ip_rating',
+      'install_type', 'install_month', 'daily_hours', 'humidity_pct',
+      'reboots_per_week', 'rated_power_w', 'height_m', 'width_m', 'install_year'
     ];
-    for (const k of required){
+    for (const k of required) {
       if (!data[k]) {
         showAlert(
-          IS_AR?'رجاءً أكمل جميع الحقول.'
-          :'Please fill in all required fieldds.');
+          IS_AR
+            ? 'رجاءً أكمل جميع الحقول.'
+            : 'Please fill in all required fields.'
+        );
         return;
       }
     }
@@ -48,15 +58,19 @@ if (!window.__PM_BIND_ONCE__) {
     const tempCEl = document.getElementById('temp_c');
     if (!tempCEl || tempCEl.value === '') {
       showAlert(
-        IS_AR ?'رجاءً أدخل درجة الحرارة (°C).'
-        :' Please enter ambient temperature (°C).');
+        IS_AR
+          ? 'رجاءً أدخل درجة الحرارة (°C).'
+          : 'Please enter ambient temperature (°C).'
+      );
       return;
     }
     const tempC = parseFloat(tempCEl.value);
     if (!Number.isFinite(tempC)) {
       showAlert(
-        IS_AR?'أدخل رقمًا صحيحًا لدرجة الحرارة (°C).'
-        :'Please enter a valid number for temperature (°C).');
+        IS_AR
+          ? 'أدخل رقمًا صحيحًا لدرجة الحرارة (°C).'
+          : 'Please enter a valid number for temperature (°C).'
+      );
       return;
     }
 
@@ -64,28 +78,32 @@ if (!window.__PM_BIND_ONCE__) {
     const hVal = parseFloat(data.height_m);
     if (!Number.isFinite(hVal) || hVal < 0.5 || hVal > 3) {
       showAlert(
-        IS_AR?'رجاءً أدخل ارتفاع الشاشة بالمتر بين 0.5 و 3.'
-        :' Please enter height (m) between 0.5 and 3.');
+        IS_AR
+          ? 'رجاءً أدخل ارتفاع الشاشة بالمتر بين 0.5 و 3.'
+          : 'Please enter height (m) between 0.5 and 3.'
+      );
       return;
     }
 
-  
     // Validate screen width (meters) within [0.5, 3]
     const wVal = parseFloat(data.width_m);
     if (!Number.isFinite(wVal) || wVal < 0.5 || wVal > 3) {
       showAlert(
-        IS_AR?'رجاءً أدخل عرض الشاشة بالمتر بين 0.5 و 3.'
-        : 'Please enter width (m) between 0.5 and 3.');
+        IS_AR
+          ? 'رجاءً أدخل عرض الشاشة بالمتر بين 0.5 و 3.'
+          : 'Please enter width (m) between 0.5 and 3.'
+      );
       return;
     }
 
     // Validate installation year (required field)
-
     const yearEl = document.getElementById('install_year');
     if (!yearEl || yearEl.value === "") {
       showAlert(
-        IS_AR?'رجاءً اختار سنة التركيب.'
-        :'Please select installation year.');
+        IS_AR
+          ? 'رجاءً اختر سنة التركيب.'
+          : 'Please select installation year.'
+      );
       return;
     }
     const yearVal = parseInt(yearEl.value);
@@ -109,7 +127,7 @@ if (!window.__PM_BIND_ONCE__) {
       install_type: data.install_type,
       install_month:data.install_month,
 
-      lang: (document.documentElement.lang === 'ar') ? 'ar' : 'en'
+      lang: IS_AR ? 'ar' : 'en'
     };
 
     // UI Elements for showing prediction results
@@ -119,7 +137,6 @@ if (!window.__PM_BIND_ONCE__) {
     const tipsEl     = document.getElementById('r-tips');
 
     try {
-
       // Send POST request to backend with JSON payload
       const res = await fetch(ENDPOINT_PM, {
         method: 'POST',
@@ -128,7 +145,11 @@ if (!window.__PM_BIND_ONCE__) {
       });
 
       if (!res.ok){
-        showAlert('تعذّر الوصول لخادم التنبؤ.');
+        showAlert(
+          IS_AR
+            ? 'تعذّر الوصول لخادم التنبؤ.'
+            : 'Could not reach prediction server.'
+        );
         return;
       }
 
@@ -136,11 +157,16 @@ if (!window.__PM_BIND_ONCE__) {
       console.log('pm_predict response =>', json);
 
       // Extract predicted status (OK | WARN | FAIL)
-      const isAR = (document.documentElement.lang === 'ar');
       const extractCode = (j) => {
-        let raw = (j?.debug?.raw_pred ?? '').toString().replace(/[^A-Za-z]/g,'').toUpperCase();
+        let raw = (j?.debug?.raw_pred ?? '')
+          .toString()
+          .replace(/[^A-Za-z]/g,'')
+          .toUpperCase();
         if (['OK','WARN','FAIL'].includes(raw)) return raw;
-        const up = (j?.status ?? '').toString().trim().toUpperCase();
+        const up = (j?.status ?? '')
+          .toString()
+          .trim()
+          .toUpperCase();
         if (['OK','WARN','FAIL'].includes(up)) return up;
         return '';
       };
@@ -162,35 +188,31 @@ if (!window.__PM_BIND_ONCE__) {
       };
 
       // Extra tips based on input values
-
       const extraTip = (() => {
         const out = [];
         const h   = parseFloat(data.daily_hours);
         const r   = parseFloat(data.reboots_per_week);
         const hum = parseFloat(data.humidity_pct);
-        if (h > 16) out.push(isAR ? 'ساعات تشغيل عالية.' : 'High daily hours.');
-        if (r > 10) out.push(isAR ? 'إعادات تشغيل كثيرة.' : 'Frequent reboots.');
-        if (hum > 80) out.push(isAR ? 'رطوبة مرتفعة.' : 'High humidity.');
+        if (h > 16) out.push(IS_AR ? 'ساعات تشغيل عالية.' : 'High daily hours.');
+        if (r > 10) out.push(IS_AR ? 'إعادات تشغيل كثيرة.' : 'Frequent reboots.');
+        if (hum > 80) out.push(IS_AR ? 'رطوبة مرتفعة.' : 'High humidity.');
         return out.join(' • ');
       })();
 
       // Write results to UI
-
       if (code){
-        rStatus.textContent = isAR ? labelAR[code] : labelEN[code];
-        rNote.textContent   = json.note || (isAR ? adviceAR[code] : adviceEN[code]);
+        rStatus.textContent = IS_AR ? labelAR[code] : labelEN[code];
+        rNote.textContent   = json.note || (IS_AR ? adviceAR[code] : adviceEN[code]);
       } else {
-        rStatus.textContent = isAR ? 'غير معروف' : 'Unknown';
-        rNote.textContent   = isAR ? 'تحقق من المدخلات.' : 'Check inputs.';
+        rStatus.textContent = IS_AR ? 'غير معروف' : 'Unknown';
+        rNote.textContent   = IS_AR ? 'تحقق من المدخلات.' : 'Check inputs.';
       }
 
-      
       // Render final list of tips
-    
       if (tipsEl){
         tipsEl.innerHTML = "";
         const list = [
-          isAR ? adviceAR[code] : adviceEN[code],
+          IS_AR ? adviceAR[code] : adviceEN[code],
           extraTip
         ].filter(Boolean);
         for (const tip of list){
@@ -201,18 +223,22 @@ if (!window.__PM_BIND_ONCE__) {
       }
 
       // Show result card
-      resultCard.style.display = 'block';
-      resultCard.scrollIntoView({ behavior:'smooth' });
+      if (resultCard){
+        resultCard.style.display = 'block';
+        resultCard.scrollIntoView({ behavior:'smooth' });
+      }
 
     } catch (err) {
       console.error('pm fetch error:', err);
-      showAlert('تعذّر الاتصال بالخادم.');
+      showAlert(
+        IS_AR
+          ? 'تعذّر الاتصال بالخادم.'
+          : 'Could not connect to server.'
+      );
     }
   });
 
-  
   // Sync sliders + numeric inputs for better UX
-
   document.addEventListener('input', (ev) => {
     const el = ev.target;
 

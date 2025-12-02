@@ -1,8 +1,11 @@
 // js/ad_predict.js
-// Frontend logic for the best ad place prediction 
+// Frontend logic for the best ad place prediction
 
 'use strict';
 console.log('ad_predict.js loaded');
+
+// ==== 1) BACKEND BASE URL (Render) ====
+const API_BASE = 'https://smart-ads-system-1.onrender.com';
 
 // Allowed values server-side must match these strings
 const ALLOWED_AD = {
@@ -23,19 +26,21 @@ function showAlert(msg){
   try { alert(msg); } catch(_) { console.log('alert:', msg); }
 }
 
-// Global listener:handles submit even if the from is injected later
+// Global listener: handles submit even if the form is injected later
 document.addEventListener('submit', async (ev) => {
   const form = ev.target;
-  // ignore any from that is not our target 
-  if (!form || form.id !== 'ad-form') return; 
+  // ignore any form that is not our target 
+  if (!form || form.id !== 'ad-form') return;
+
   ev.preventDefault();
-  // convert from data into a plain js object
+
+  // convert form data into a plain js object
   const fd = new FormData(form);
   const data = Object.fromEntries(fd.entries());
 
   // quick required check
   for (const k of Object.keys(ALLOWED_AD)){
-    if (!data[k] || data[k].trim()===''){
+    if (!data[k] || data[k].trim() === ''){
       showAlert('رجاءً أكمل جميع الحقول قبل الضغط على (احسب الأفضل).');
       return;
     }
@@ -52,18 +57,20 @@ document.addEventListener('submit', async (ev) => {
   // attach current page language for backend localization
   data.lang = document.documentElement.lang === 'ar' ? 'ar' : 'en';
 
-  // POST to backend
   try {
-    const res = await fetch('http://127.0.0.1:8000/api/btp', {
+    // ==== 2) نستخدم رابط Render هنا ====
+    const res = await fetch(`${API_BASE}/api/btp`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    // pasic HTTP error handling
+
+    // basic HTTP error handling
     if (!res.ok) {
       showAlert(`حدث خطأ في الخادم. HTTP ${res.status}`);
       throw new Error(`HTTP ${res.status}`);
     }
+
     // read JSON prediction from API
     const json = await res.json();
     console.log('ad_predict response =>', json);
@@ -76,11 +83,14 @@ document.addEventListener('submit', async (ev) => {
     if (rPlace) rPlace.textContent = json.best_place || '—';
     if (rNote)  rNote.textContent  = json.note || '';
 
-    // show result section andd scroll ti it smoothly
-    if (result) { result.style.display = 'block'; result.scrollIntoView({ behavior: 'smooth' }); }
-    // Network / runtime error handling
+    // افتحي كرت النتيجة ولفي عليه
+    if (result) {
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth' });
+    }
+
   } catch (err) {
     console.error('fetch error:', err);
-    showAlert('تعذّر الاتصال بالخادم. تأكد أن السيرفر يعمل  .');
+    showAlert('تعذّر الاتصال بالخادم. تأكد أن السيرفر يعمل ثم حاولي مرة أخرى.');
   }
 });
