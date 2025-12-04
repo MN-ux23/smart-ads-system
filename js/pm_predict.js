@@ -147,8 +147,8 @@ if (!window.__PM_BIND_ONCE__) {
       if (!res.ok){
         showAlert(
           IS_AR
-            ? 'تعذّر الوصول لخادم التنبؤ.'
-            : 'Could not reach prediction server.'
+            ? 'جارٍ المعالجة… نقدر انتظارك.'
+            : 'Please wait a moment… we appreciate your patience'
         );
         return;
       }
@@ -232,8 +232,8 @@ if (!window.__PM_BIND_ONCE__) {
       console.error('pm fetch error:', err);
       showAlert(
         IS_AR
-          ? 'تعذّر الاتصال بالخادم.'
-          : 'Could not connect to server.'
+          ? 'جارٍ المعالجة… نقدر انتظارك.'
+          : 'Please wait a moment… we appreciate your patience'
       );
     }
   });

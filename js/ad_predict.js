@@ -41,16 +41,22 @@ document.addEventListener('submit', async (ev) => {
   // quick required check
   for (const k of Object.keys(ALLOWED_AD)){
     if (!data[k] || data[k].trim() === ''){
-      showAlert('رجاءً أكمل جميع الحقول قبل الضغط على (احسب الأفضل).');
-      return;
+      if (document.documentElement.dir === 'rtl') {
+    showAlert('رجاءً أكمل جميع الحقول قبل الضغط على (أحسب الأفضل)');
+} else {
+    showAlert('Please fill in all fields before submitting.');
+}
     }
   }
 
   // quick allowed validation
   for (const [k,v] of Object.entries(data)){
     if (ALLOWED_AD[k] && !ALLOWED_AD[k].includes(v)){
-      showAlert(`قيمة غير مسموحة في الحقل: ${k}`);
-      return;
+      if (document.documentElement.dir === 'rtl') {
+    showAlert(`قيمة غير مسموحة في الحقل: ${k}`);
+} else {
+    showAlert(`Invalid value in field: ${k}`);
+}
     }
   }
 
@@ -66,10 +72,14 @@ document.addEventListener('submit', async (ev) => {
     });
 
     // basic HTTP error handling
-    if (!res.ok) {
-      showAlert(`حدث خطأ في الخادم. HTTP ${res.status}`);
-      throw new Error(`HTTP ${res.status}`);
+   if (!res.ok) {
+    if (document.documentElement.dir === 'rtl') {
+        showAlert('فضلًا انتظر قليلًا ');
+    } else {
+        showAlert('Please wait a little… ');
     }
+    throw new Error(`HTTP ${res.status}`);
+}
 
     // read JSON prediction from API
     const json = await res.json();
@@ -91,6 +101,10 @@ document.addEventListener('submit', async (ev) => {
 
   } catch (err) {
     console.error('fetch error:', err);
-    showAlert('تعذّر الاتصال بالخادم. تأكد أن السيرفر يعمل ثم حاول مرة أخرى.');
+   if (document.documentElement.dir === 'rtl') {
+    showAlert('لحظات بسيطة… نقدر انتظارك ');
+} else {
+    showAlert('Please wait a moment… we appreciate your patience ');
+}
   }
 });

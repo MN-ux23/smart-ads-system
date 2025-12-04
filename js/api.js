@@ -69,8 +69,8 @@ async function callBestPlace(form) {
     if (resultBox) {
       resultBox.textContent =
         lang === "ar"
-          ? "حدث خطأ أثناء الاتصال بالخادم."
-          : "Error while calling the server.";
+          ? "جارٍ المعالجة… نقدر انتظارك."
+          : "Please wait a moment… we appreciate your patience";
     }
   }
 }
@@ -145,8 +145,8 @@ async function callPm(form) {
     if (resultBox) {
       resultBox.textContent =
         lang === "ar"
-          ? "حدث خطأ أثناء الاتصال بالخادم."
-          : "Error while calling the server.";
+          ? "جارٍ المعالجة… نقدر انتظارك."
+          : "Please wait a moment… we appreciate your patience";
     }
   }
 }
